@@ -2,16 +2,26 @@ package framgiavn.project01.web.dao.impl;
 
 import org.hibernate.LockMode;
 import org.hibernate.Query;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.hibernate.SessionFactory;
 
 import framgiavn.project01.web.dao.UserDAO;
 import framgiavn.project01.web.model.User;
 import framgiavn.project01.web.ulti.Logit2;
 
-public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
+public class UserDAOImpl implements UserDAO {
 
 	private static final Logit2 log = Logit2.getInstance(UserDAOImpl.class);
 	public static final String NAME = "customerName";
+	public SessionFactory sessionFactory;
+
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	protected void initDAO() {
 		// Do nothing
@@ -24,7 +34,7 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
 
 	public User findByUserId(Integer user_id, boolean lock) throws Exception {
 		try {
-			Query query = getSession().getNamedQuery("User.SelectUserByUserId");
+			Query query = sessionFactory.getCurrentSession().getNamedQuery("User.SelectUserByUserId");
 			if (lock)
 				query.setLockMode("User", LockMode.UPGRADE);
 			query.setParameter("user_id", user_id);
