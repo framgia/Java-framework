@@ -1,9 +1,10 @@
 package framgiavn.project01.web.business;
 
+import framgiavn.project01.web.info.UserInfo;
 import framgiavn.project01.web.model.User;
 
 public interface UserBusiness {
-	public User findByUserId(Integer user_id) throws Exception;
+	public UserInfo findByUserId(Integer user_id);
 
-	public User findByUsername(String username) throws Exception;
+	public UserInfo findByUsername(String username);
 }
