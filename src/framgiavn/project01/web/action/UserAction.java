@@ -30,20 +30,12 @@ public class UserAction extends ActionSupport {
 	}
 
 	public String findByUserId() {
-		try {
-			user = userBusiness.findByUserId(user.getUser_id());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//			user = userBusiness.findByUserId(user.getUser_id());
 		return SUCCESS;
 	}
 
 	public String findByUsername() {
-		try {
-			user = userBusiness.findByUsername(user.getUsername());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//			user = userBusiness.findByUsername(user.getUsername());
 		return SUCCESS;
 	}
 
