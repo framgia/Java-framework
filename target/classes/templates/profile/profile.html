@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="layout::head"></head>
+<meta charset="UTF-8"/>
+<nav th:replace="layout::header"></nav>
+<div class="container" style="padding-top: 60px;">
+
+    <h1 class="page-header">Edit Profile</h1>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="text-center">
+                <th:block th:if="${#strings.isEmpty(user.avatar)}">
+
+                    <img th:src="@{/images/logo-2.png}" class="avatar circle-img img-circle"
+                         alt="avatar"/>
+                </th:block>
+                <th:block th:unless="${#strings.isEmpty(user.avatar)}">
+                    <img th:src="@{/images/{image} (image=${user.avatar})}" class="avatar circle-img img-circle"
+                         alt="avatar"/>
+                </th:block>
+
+                <h6>Upload a different photo...</h6>
+
+            </div>
+        </div>
+
+
+
+        <!-- edit form column -->
+        <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                This is an <strong>.alert</strong>. Use this to show important messages to the user.
+            </div>
+            <h3>Personal info</h3>
+            <form class="form-horizontal" role="form" th:object="${user}" th:action="@{/users/edit}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{roles}"/>
+                <input type="hidden" th:field="*{username}"/>
+                <input type="hidden" th:field="*{password}"/>
+                <input type="file" name="file" class="upload-new-pic text-center center-block well well-sm"
+                       accept="image/*"/>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">First name:</label>
+                    <div class="col-lg-8">
+                        <input th:field="*{firstname}" class="form-control" value="Jane" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Last name:</label>
+                    <div class="col-lg-8">
+                        <input th:field="*{lastname}" class="form-control" value="Bishop" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Nick name:</label>
+                    <div class="col-lg-8">
+                        <input th:field="*{nickname}" class="form-control" value="Bishop" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Company:</label>
+                    <div class="col-lg-8">
+                        <input th:field="*{company}" class="form-control" value="" type="text"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <button type="submit" class="btn btn-primary" id="btnSubmit">Save</button>
+                        <span></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    //<![CDATA[
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(".avatar")
+                        .attr("src", e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("input.upload-new-pic").change(function () {
+        readURL(this);
+    });
+    //]]>
+
+</script>
+</html>
