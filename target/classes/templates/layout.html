@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Spring MyContact</title>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({
+        selector: 'textarea',
+        width: 800,
+        height: 500,
+        theme: 'modern',
+
+        plugins: [
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+        image_advtab: true,
+        templates: [
+            {title: 'Test template 1', content: 'Test 1'},
+            {title: 'Test template 2', content: 'Test 2'}
+        ],
+
+        content_css: [
+            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '//www.tinymce.com/css/codepen.min.css'
+        ]
+    });</script>
+    <link href="../static/images/logo.png" th:href="@{/images/logo.png}"
+          rel="shortcut icon"/>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link id="active_style" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css"/>
+    <!-- Bootstrap -->
+    <link
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+            rel="stylesheet"/>
+    <!-- Custom style -->
+    <link href="../static/css/style.css" th:href="@{/css/layout.css}"
+          rel="stylesheet"/>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}"
+          rel="stylesheet"/>
+
+
+    <link href="../static/css/index.css" th:href="@{/css/index.css}"
+          rel="stylesheet"/>
+
+    <link href="../static/css/image.css" th:href="@{/css/image.css}"
+          rel="stylesheet"/>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+</head>
+<body>
+<nav th:fragment="header">
+
+    <div class="navbar-wrapper">
+        <div class="container">
+            <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                                class="icon-bar"></span><span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Spring Techlog</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a th:href="@{/}">Home</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li><a th:href="@{/posts/upload}">Write Post</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account
+                                <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="navbar-content">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <img th:src="@{/images/{image} (image=${currentUser.avatar})}"
+                                                         alt="Alternate Text" class="avatar circle-img-mini img-circle"/>
+
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <span sec:authentication="name"></span>
+                                                    <!--
+                                                                                                        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]</h1>
+                                                    -->
+                                                    <div class="divider">
+                                                    </div>
+                                                    <a th:href="@{/users/edit}" class="btn btn-primary btn-sm active">View Profile</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="navbar-footer">
+                                            <div class="navbar-footer-content">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <a href="#" class="btn btn-default btn-sm">Change Passowrd</a>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <a th:href="@{/logout}"
+                                                           class="btn btn-default btn-sm pull-right">Sign Out</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</nav>
+
+<h1>Main content</h1>
+
+
+<footer th:fragment="footer" class="container">
+    &copy; 2017 DAKA
+</footer>
+</body>
+</html>
