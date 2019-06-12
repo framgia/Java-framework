@@ -611,11 +611,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-		<dependency>
+		<!-- <dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-core</artifactId>
 		    <version>4.2.3.RELEASE</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto -->
 		<dependency>
@@ -682,11 +682,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core -->
-		<dependency>
+		<!-- <dependency>
 		    <groupId>org.apache.struts</groupId>
 		    <artifactId>struts2-core</artifactId>
 		    <version>2.5.12</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-json-plugin -->
 		<dependency>
